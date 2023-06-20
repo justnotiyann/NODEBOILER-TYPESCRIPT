@@ -1,11 +1,15 @@
-import mongoose, { Document, Schema } from "mongoose"
+import mongoose, { Document, Schema, Model } from "mongoose"
 import bcryptjs from "bcryptjs"
+import { IPaginationResult } from "../interface/pagination"
 
 export interface IUserSchema extends Document {
     username: string
     email: string
     password: string
-    comparePassword?: (password: string) => Promise<boolean>
+}
+
+export interface IUserModel extends Model<IUserSchema> {
+    getAllUsers: (page: number, limit: number) => Promise<IPaginationResult<IUserSchema>>
 }
 
 const UserSchema: Schema<IUserSchema> = new Schema<IUserSchema>(
@@ -39,9 +43,23 @@ UserSchema.pre("save", async function (next): Promise<void> {
     next()
 })
 
-UserSchema.methods.comparePassword = async function (password: string): Promise<boolean> {
-    return await bcryptjs.compare(password, this.password)
+UserSchema.statics.getAllUsers = async function (page: number, limit: number): Promise<IPaginationResult<IUserSchema>> {
+    const skipCount = (page - 1) * limit
+
+    const totalUsers = await this.countDocuments()
+    const totalPages = Math.ceil(totalUsers / limit)
+
+    const users = await this.find({}, { password: 0 }).skip(skipCount).limit(limit)
+
+    const paginationResult: IPaginationResult<IUserSchema> = {
+        total: totalUsers,
+        totalPages: totalPages,
+        currentPage: page,
+        data: users,
+    }
+
+    return paginationResult
 }
 
-const Users = mongoose.model<IUserSchema>("user", UserSchema)
+const Users: IUserModel = mongoose.model<IUserSchema, IUserModel>("user", UserSchema)
 export default Users

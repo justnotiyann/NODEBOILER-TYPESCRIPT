@@ -1,7 +1,10 @@
 import { Router } from "express"
-import { get } from "./users.controller"
+import { createController, getController, getUserByUsernameController, getUserByIdFunctionController } from "./users.controller"
 const router: Router = Router()
 
-router.get("/", get)
+router.get("/", getController)
+router.post("/register", createController)
+router.get("/detail/:id", getUserByIdFunctionController)
+router.get("/:username", getUserByUsernameController)
 
 export default router
