@@ -8,6 +8,6 @@
         "outDir": "src",
         "rootDir": "app"
     },
-    "include": ["app/**/*.ts"],
+    "include": ["app/**/*.ts", "index.ts"],
     "exclude": ["node_modules"]
 }
