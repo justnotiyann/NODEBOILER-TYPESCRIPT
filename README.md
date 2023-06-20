@@ -22,6 +22,16 @@ yarn start:dev
 yarn start:build
 ```
 
+## Routes
+
+| Group    | Desc            | Method | Endpoint                                   | Auth |
+| -------- | --------------- | ------ | ------------------------------------------ | ---- |
+| User API | Register        | POST   | http://localhost:port/api/users/register   | NO   |
+|          | Login           | POST   | http://localhost:port/api/auth/login       | NO   |
+|          | Get By Id       | GET    | http://localhost:port/api/users/detail/:id | NO   |
+|          | Get By Username | GET    | http://localhost:port/api/users/:username  | NO   |
+|          |                 |        |                                            |      |
+
 ## Installed Package
 
 **Authentication**
@@ -37,3 +47,5 @@ yarn start:build
 **Database**
 
 1. MongoDB with Mongoose as ODM
+
+
