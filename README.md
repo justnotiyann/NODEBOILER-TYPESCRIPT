@@ -1,22 +1,28 @@
 # MY PERSONAL NODEBOILER FOR TYPESCRIPT PROJECT
 
-
-
 ## **Installation**
 
-with npm
-
-```bash
-npm install
-```
-
-with yarn
+Prefer with yarn :
 
 ```bash
 yarn
 ```
 
-## INSTALLED PACKAGE
+## How To Running This
+
+**Development**
+
+```bash
+yarn start:dev
+```
+
+**Production**
+
+```bash
+yarn start:build
+```
+
+## Installed Package
 
 **Authentication**
 

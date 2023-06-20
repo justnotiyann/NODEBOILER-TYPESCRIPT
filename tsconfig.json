@@ -5,7 +5,7 @@
         "lib": ["es6"],
         "strict": true,
         "esModuleInterop": true,
-        "outDir": "src",
+        "outDir": "dist",
         "rootDir": "app"
     },
     "include": ["app/**/*.ts", "index.ts"],
