@@ -5,6 +5,7 @@ import helmet from "helmet"
 import passport from "passport"
 
 import localStrategy from "./src/passport/local.passport"
+import googleStrategy from "./src/passport/google.passport"
 import { PORT_SERVER } from "./src/config"
 import connectDB from "./src/connection"
 
@@ -17,13 +18,16 @@ app.use(express.urlencoded({ extended: true }))
 app.use(helmet())
 app.use(cors())
 passport.use(localStrategy)
+passport.use(googleStrategy)
 
 // Our Routes
 import userRoutes from "./src/api/users/users.routes"
 import localAuthRoutes from "./src/api/auth/login/login.routes"
+import googleRoutes from "./src/api/auth/google/google.routes"
 
 app.use("/api/auth/", localAuthRoutes)
 app.use("/api/users", userRoutes)
+app.use("/api/auth/google", googleRoutes)
 
 // Error Handling
 import errorHandlingMiddleware from "./src/middleware/handleErrorMiddleware"
