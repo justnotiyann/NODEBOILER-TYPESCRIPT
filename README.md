@@ -30,7 +30,7 @@ yarn start:build
 |          | Login           | POST   | http://localhost:port/api/auth/login       | NO   |
 |          | Get By Id       | GET    | http://localhost:port/api/users/detail/:id | NO   |
 |          | Get By Username | GET    | http://localhost:port/api/users/:username  | NO   |
-|          |                 |        |                                            |      |
+| Google   | Login           | POST   | http://localhost:port/api/auth/google      | NO   |
 
 ## Installed Package
 
@@ -47,5 +47,3 @@ yarn start:build
 **Database**
 
 1. MongoDB with Mongoose as ODM
-
-
